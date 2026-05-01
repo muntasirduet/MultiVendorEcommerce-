@@ -1,0 +1,16 @@
+CREATE DATABASE identity_db;
+CREATE DATABASE catalog_db;
+CREATE DATABASE order_db;
+CREATE DATABASE payment_db;
+CREATE DATABASE inventory_db;
+CREATE DATABASE vendor_db;
+CREATE DATABASE shipping_db;
+CREATE DATABASE notification_db;
+CREATE DATABASE review_db;
+CREATE DATABASE discount_db;
+CREATE DATABASE analytics_db;
+CREATE DATABASE payout_db;
+CREATE DATABASE audit_db;
+CREATE DATABASE admin_db;
+CREATE DATABASE media_db;
+CREATE DATABASE keycloak_db;
