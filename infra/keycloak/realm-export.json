@@ -22,7 +22,7 @@
   "ssoSessionIdleTimeout": 1800,
   "ssoSessionMaxLifespan": 36000,
   "offlineSessionIdleTimeout": 2592000,
-  "offlineSessionMaxLifespan": 5184000,
+  "offlineSessionMaxLifespan": 604800,
   "offlineSessionMaxLifespanEnabled": true,
   "clientSessionIdleTimeout": 0,
   "clientSessionMaxLifespan": 0,
@@ -72,7 +72,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "change-me-in-production",
+      "secret": "REPLACE_WITH_SECURE_SECRET_IN_PRODUCTION",
       "redirectUris": [
         "http://localhost:*/*",
         "https://localhost:*/*"
