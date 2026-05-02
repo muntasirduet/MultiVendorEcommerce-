@@ -47,11 +47,11 @@ public class ProductRepository : IProductRepository
 
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            var term = searchTerm.ToLower();
+            var term = $"%{searchTerm}%";
             query = query.Where(p =>
-                p.Name.ToLower().Contains(term) ||
-                (p.Description != null && p.Description.ToLower().Contains(term)) ||
-                p.SKU.ToLower().Contains(term));
+                EF.Functions.ILike(p.Name, term) ||
+                (p.Description != null && EF.Functions.ILike(p.Description, term)) ||
+                EF.Functions.ILike(p.SKU, term));
         }
 
         var totalCount = await query.CountAsync(cancellationToken);

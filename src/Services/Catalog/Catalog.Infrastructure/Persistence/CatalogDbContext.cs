@@ -20,15 +20,5 @@ public class CatalogDbContext : DbContext
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        foreach (var entry in ChangeTracker.Entries())
-        {
-            if (entry.State == EntityState.Modified)
-            {
-                // UpdatedAt is set via entity method; no additional action needed here
-            }
-        }
-
-        return base.SaveChangesAsync(cancellationToken);
-    }
+        => base.SaveChangesAsync(cancellationToken);
 }
