@@ -135,3 +135,31 @@ services:
       interval: 15s
       timeout: 10s
       retries: 5
+
+  catalog-api:
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/Catalog.API/Dockerfile
+    container_name: ecommerce-catalog-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__CatalogDb=${CATALOG_DB_CONNECTION}
+      - Keycloak__Authority=http://keycloak:8080/realms/ecommerce
+      - Keycloak__Audience=ecommerce-backend
+      - Keycloak__RequireHttpsMetadata=false
+      - Seq__ServerUrl=http://seq:80
+    ports:
+      - "5010:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+    networks:
+      - ecommerce-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
