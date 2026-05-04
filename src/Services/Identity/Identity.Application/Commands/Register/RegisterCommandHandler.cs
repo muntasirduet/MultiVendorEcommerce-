@@ -51,7 +51,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result<Gu
         }
         catch (Exception ex)
         {
-            return Result<Guid>.Failure(Error.Conflict(ex.Message));
+            return Result<Guid>.Failure(Error.External(ex.Message));
         }
     }
 }

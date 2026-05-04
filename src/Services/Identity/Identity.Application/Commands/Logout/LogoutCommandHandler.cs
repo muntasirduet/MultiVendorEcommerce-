@@ -19,7 +19,7 @@ public class LogoutCommandHandler : IRequestHandler<LogoutCommand, Result<bool>>
         }
         catch (Exception ex)
         {
-            return Result<bool>.Failure(Error.Conflict(ex.Message));
+            return Result<bool>.Failure(Error.External(ex.Message));
         }
     }
 }

@@ -33,7 +33,8 @@ public class KeycloakAdminClient : IKeycloakService
 
         var json = await response.Content.ReadFromJsonAsync<JsonElement>(cancellationToken: ct);
         return json.GetProperty("access_token").GetString()
-               ?? throw new InvalidOperationException("Failed to obtain admin access token.");
+               ?? throw new InvalidOperationException(
+                   "Failed to obtain admin access token from Keycloak. The access_token property was null or missing in the response.");
     }
 
     public async Task<string> CreateUserAsync(string email, string password, string firstName, string lastName, CancellationToken ct = default)
@@ -61,7 +62,8 @@ public class KeycloakAdminClient : IKeycloakService
         response.EnsureSuccessStatusCode();
 
         var location = response.Headers.Location?.ToString()
-                       ?? throw new InvalidOperationException("Keycloak did not return a user location.");
+                       ?? throw new InvalidOperationException(
+                           "Keycloak user creation succeeded but did not return a Location header containing the new user ID.");
 
         return location.Split('/').Last();
     }

@@ -19,4 +19,5 @@ public record Error(string Code, string Message)
     public static Error Validation(string message) => new("VALIDATION_ERROR", message);
     public static Error Conflict(string message) => new("CONFLICT", message);
     public static Error Unauthorized(string message) => new("UNAUTHORIZED", message);
+    public static Error External(string message) => new("EXTERNAL_SERVICE_ERROR", message);
 }

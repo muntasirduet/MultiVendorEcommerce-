@@ -32,6 +32,7 @@ public class AuthController : ControllerBase
             return result.Error!.Code switch
             {
                 "CONFLICT" => Conflict(new { result.Error.Message }),
+                "EXTERNAL_SERVICE_ERROR" => StatusCode(StatusCodes.Status502BadGateway, new { result.Error.Message }),
                 _ => BadRequest(new { result.Error.Message })
             };
         }

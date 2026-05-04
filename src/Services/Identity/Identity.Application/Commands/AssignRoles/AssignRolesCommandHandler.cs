@@ -45,7 +45,7 @@ public class AssignRolesCommandHandler : IRequestHandler<AssignRolesCommand, Res
         }
         catch (Exception ex)
         {
-            return Result<bool>.Failure(Error.Conflict(ex.Message));
+            return Result<bool>.Failure(Error.External(ex.Message));
         }
     }
 }
